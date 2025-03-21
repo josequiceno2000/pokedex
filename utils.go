@@ -1,9 +1,7 @@
 package main
 
 import (
-	"fmt"
 	"strings"
-	"os"
 )
 
 func cleanInput(text string) []string {
@@ -11,8 +9,3 @@ func cleanInput(text string) []string {
 	return strings.Fields(text)
 }
 
-func commandExit() error {
-	fmt.Printf("Closing the Pokedex... Goodbye!\n")
-	os.Exit(0)
-	return nil
-}
