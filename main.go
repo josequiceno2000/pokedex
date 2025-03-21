@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"strings"
 )
 
 func main()  {
@@ -9,5 +10,14 @@ func main()  {
 }
 
 func cleanInput(text string) []string {
-	return []string{}
+	cleanOutput := []string{}
+	
+	if len(text) > 0 {
+		text = strings.Trim(text, " ")
+		text = strings.ToLower(text)
+		wordsToAdd := strings.Fields(text)
+		cleanOutput = append(cleanOutput, wordsToAdd...)
+	}
+	return cleanOutput
+
 }
