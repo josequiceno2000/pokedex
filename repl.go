@@ -19,7 +19,7 @@ func startRepl() {
 			continue
 		}
 
-		fmt.Printf("Your command was: %v\n", words[0])
+		
 	}
 }
 
