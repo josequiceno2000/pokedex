@@ -49,12 +49,6 @@ func startRepl() {
 	}
 }
 
-func commandExit() error {
-	fmt.Println("Closing the Pokedex... Goodbye!")
-	os.Exit(0)
-	return nil
-}
-
 func cleanInput(text string) []string {
 	trimmedText := strings.TrimSpace(text)
 	loweredText := strings.ToLower(trimmedText)
