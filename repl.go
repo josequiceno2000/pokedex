@@ -7,21 +7,21 @@ import (
 	"fmt"
 )
 
-type cliCommand struct {
-	name string
-	description string
-	callback func()
-}
-
-map[string]cliCommand{
-	"exit": {
-		name: "exit",
-		description: "Exit the Pokedex",
-		callback: commandExit,
-	},
-}
-
 func startRepl() {
+	type cliCommand struct {
+		name string
+		description string
+		callback func() error
+	}
+	
+	possibleCommands := map[string]cliCommand{
+		"exit": {
+			name: "exit",
+			description: "Exit the Pokedex",
+			callback: commandExit,
+		},
+	}
+
 	scanner := bufio.NewScanner(os.Stdin)
 	for {
 		fmt.Print("Pokedex > ")
@@ -31,15 +31,28 @@ func startRepl() {
 		
 		if len(words) == 0 {
 			continue
+		} else {
+			command := words[0]
+			_, exists := possibleCommands[command]
+
+			if exists {
+				err := possibleCommands[command].callback
+				if err != nil {
+					fmt.Fprintf(os.Stderr, "Error: %v\n", err)
+				}
+			} else {
+				fmt.Println("Unknown command")
+			}
 		}
 
 		
 	}
 }
 
-func commandExit() {
+func commandExit() error {
 	fmt.Println("Closing the Pokedex... Goodbye!")
 	os.Exit(0)
+	return nil
 }
 
 func cleanInput(text string) []string {
