@@ -2,10 +2,14 @@ package main
 
 import (
 	"fmt"
+	"strings"
 )
 
 func cleanInput(text string) []string {
-	return []string{}
+	trimmedText := strings.TrimSpace(text)
+	loweredText := strings.ToLower(trimmedText)
+	words := strings.Fields(loweredText)
+	return words
 }
 
 func main() {
