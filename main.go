@@ -16,8 +16,8 @@ func main() {
 		
 		if scanner.Scan() {
 			userInput := scanner.Text()
-			cleanedInput := cleanInput((userInput))
-			fmt.Printf("Your command was: %v", cleanedInput[0])
+			cleanedInput := cleanInput(userInput)
+			fmt.Printf("Your command was: %v\n", cleanedInput[0])
 		}
 	}
 	
