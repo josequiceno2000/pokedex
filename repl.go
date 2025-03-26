@@ -7,6 +7,11 @@ import (
 	"fmt"
 )
 
+type cliCommand struct {
+	name string
+	description
+}
+
 func startRepl() {
 	scanner := bufio.NewScanner(os.Stdin)
 	for {
@@ -21,6 +26,11 @@ func startRepl() {
 
 		
 	}
+}
+
+func commandExit() {
+	fmt.Println("Closing the Pokedex... Goodbye!")
+	os.Exit(0)
 }
 
 func cleanInput(text string) []string {
