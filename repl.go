@@ -9,7 +9,16 @@ import (
 
 type cliCommand struct {
 	name string
-	description
+	description string
+	callback func()
+}
+
+map[string]cliCommand{
+	"exit": {
+		name: "exit",
+		description: "Exit the Pokedex",
+		callback: commandExit,
+	},
 }
 
 func startRepl() {
