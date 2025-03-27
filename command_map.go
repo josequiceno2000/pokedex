@@ -12,7 +12,7 @@ func commandMapf(cfg *config) error {
 	}
 
 	cfg.nextLocationsURL = locationResp.Next
-	cfg.previousLocationsURL = locationResp.Previous
+	cfg.prevLocationsURL = locationResp.Previous
 
 	for _, loc := range locationResp.Results {
 		fmt.Println(loc.Name)
@@ -21,17 +21,17 @@ func commandMapf(cfg *config) error {
 }
 
 func commandMapb(cfg *config) error  {
-	if cfg.previousLocationsURL == nil {
+	if cfg.prevLocationsURL == nil {
 		return errors.New("you're on the first page")
 	}
 
-	locationResp, err := cfg.pokeapiClient.ListLocations(cfg.previousLocationsURL)
+	locationResp, err := cfg.pokeapiClient.ListLocations(cfg.prevLocationsURL)
 	if err != nil {
 		return err
 	}
 
 	cfg.nextLocationsURL = locationResp.Next
-	cfg.previousLocationsURL = locationResp.Previous
+	cfg.prevLocationsURL = locationResp.Previous
 
 	for _, loc := range locationResp.Results {
 		fmt.Println(loc.Name)
